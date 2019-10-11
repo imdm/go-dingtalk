@@ -6,7 +6,7 @@ import (
 
 func Test_GetAuthScopes(t *testing.T) {
 	c := GetDTClient()
-	c.RefreshCompanyAccessToken()
+	c.RefreshAccessToken()
 	data, err := c.GetAuthScopes()
 	if err != nil {
 		t.Error("测试获取Auth Scopes 未通过", err)

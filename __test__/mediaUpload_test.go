@@ -7,7 +7,7 @@ import (
 
 func Test_MediaUpload(t *testing.T) {
 	c := GetDTClient()
-	c.RefreshCompanyAccessToken()
+	c.RefreshAccessToken()
 	o, ok := os.Open("wow.jpg")
 	if ok == nil {
 		data, err := c.MediaUpload("image", "wow.jpg", o)

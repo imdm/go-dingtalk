@@ -15,7 +15,7 @@ func Test_MediaDownloadFile(t *testing.T) {
 	mediaID := "@lADPBY0V4zNROQfNBUbNCWA" //填写你刚刚上传的mediaID
 	name := randStringBytesRmndr()
 	c := GetDTClient()
-	c.RefreshCompanyAccessToken()
+	c.RefreshAccessToken()
 	ce, ok := os.Create(name + ".jpg")
 	if ok == nil {
 		err := c.MediaDownloadFile(mediaID, ce)

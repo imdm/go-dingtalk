@@ -143,7 +143,7 @@ func (e *SuiteAccessTokenResponse) ExpiresIn() int {
 }
 
 // 刷新企业获取的access_token
-func (dtc *Client) RefreshCompanyAccessToken() error {
+func (dtc *Client) RefreshAccessToken() error {
 	dtc.Locker.Lock()
 	var data AccessTokenResponse
 	err := dtc.AccessTokenCache.Get(&data)

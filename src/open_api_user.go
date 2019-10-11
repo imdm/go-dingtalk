@@ -39,7 +39,7 @@ type UserInfoResponse struct {
 	Department      []int       `json:"department"`
 	Position        string      `json:"position"`
 	Avatar          string      `json:"avatar"`
-	HiredDate       int64   `json:"hiredDate"`
+	HiredDate       int64       `json:"hiredDate"`
 	Jobnumber       string      `json:"jobnumber"`
 	Extattr         interface{} `json:"extattr"`
 	IsSenior        bool        `json:"isSenior"`

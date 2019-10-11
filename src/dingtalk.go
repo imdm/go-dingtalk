@@ -6,29 +6,6 @@ import (
 	"time"
 )
 
-/*
-*	date: 2018/05/20
-*	version: 0.1
-*	author: xiangwenwen(icepy)
-*	description: DingTalk Golang SDK https://github.com/icepy
-*
-*	^_^ 想了很久，还是准备用中文写一些话，以后的日子打算做一个山野隐居的佛系程序员
-*
-* 平静的生活
-* 平凡的人生
-* 心中的自由
-*
-*	我们经营了一家很小的团队，五个人，曾经都来自大家常说的BAT
-*
-* 钉钉是我曾经工作过的地方，留下了很多回忆
-*
-*	企业服务市场对我而言，就像人每天要吃的饭
-*
-* 我们很乐意将我们的专业知识，服务于一些企业
-*
-* 如果你的公司有企业定制，技术咨询，技术培训等需求，不妨联系我们（钉钉搜索群号“21794502”）
- */
-
 type DingTalkClient struct {
 	DTConfig              *DTConfig
 	TopConfig             *TopConfig
@@ -56,8 +33,8 @@ type TopConfig struct {
 
 type DTConfig struct {
 	TopConfig
-	CorpID        string
-	CorpSecret    string
+	AppKey        string
+	AppSecret     string
 	AgentID       string
 	SuiteKey      string
 	SuiteSecret   string
@@ -111,9 +88,9 @@ func NewDingTalkClient(devType string, config *DTConfig) *DingTalkClient {
 		if config.TopSimplify {
 			c.TopConfig.TopSimplify = config.TopSimplify
 		}
-		c.DTConfig.CorpID = config.CorpID
+		c.DTConfig.AppKey = config.AppKey
 		c.DTConfig.AgentID = config.AgentID
-		c.DTConfig.CorpSecret = config.CorpSecret
+		c.DTConfig.AppSecret = config.AppSecret
 		c.DTConfig.SSOSecret = config.SSOSecret
 		c.DTConfig.ChannelSecret = config.ChannelSecret
 		c.DTConfig.SNSAppID = config.SNSAppID

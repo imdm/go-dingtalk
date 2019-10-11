@@ -21,7 +21,7 @@ type SSOUserInfo struct {
 }
 
 // 通过CODE换取微应用管理员的身份信息
-func (dtc *DingTalkClient) SSOAdminInfoByCode(code string) (SSOAdminInfoByCodeResponse, error) {
+func (dtc *Client) SSOAdminInfoByCode(code string) (SSOAdminInfoByCodeResponse, error) {
 	var data SSOAdminInfoByCodeResponse
 	params := url.Values{}
 	params.Add("code", code)

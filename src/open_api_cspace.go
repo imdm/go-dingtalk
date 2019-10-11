@@ -56,7 +56,7 @@ type CspaceGrantCustomSpaceResponse struct {
 }
 
 // 发送文件给指定用户
-func (dtc *DingTalkClient) CspaceAddToSingleChat(info *CspaceAddToSingleChatRequest) (CspaceAddToSingleChatResponse, error) {
+func (dtc *Client) CspaceAddToSingleChat(info *CspaceAddToSingleChatRequest) (CspaceAddToSingleChatResponse, error) {
 	/*
 		这一块要么是文档没写好，要么就是有bug，目前处理的方式是URL即拼接，也发送byte形式的POST
 	*/
@@ -71,7 +71,7 @@ func (dtc *DingTalkClient) CspaceAddToSingleChat(info *CspaceAddToSingleChatRequ
 }
 
 // 新增文件到用户钉盘
-func (dtc *DingTalkClient) CspaceAdd(info *CspaceAddRequest) (CspaceAddResponse, error) {
+func (dtc *Client) CspaceAdd(info *CspaceAddRequest) (CspaceAddResponse, error) {
 	var data CspaceAddResponse
 	params := url.Values{}
 	if info.AgentID != "" {
@@ -90,7 +90,7 @@ func (dtc *DingTalkClient) CspaceAdd(info *CspaceAddRequest) (CspaceAddResponse,
 }
 
 // 获取企业下的自定义空间
-func (dtc *DingTalkClient) CspaceGetCustomSpace(info *CspaceGetCustomSpaceRequest) (CspaceGetCustomSpaceResponse, error) {
+func (dtc *Client) CspaceGetCustomSpace(info *CspaceGetCustomSpaceRequest) (CspaceGetCustomSpaceResponse, error) {
 	var data CspaceGetCustomSpaceResponse
 	params := url.Values{}
 	if info.AgentID != "" {
@@ -104,7 +104,7 @@ func (dtc *DingTalkClient) CspaceGetCustomSpace(info *CspaceGetCustomSpaceReques
 }
 
 // 授权用户访问企业下的自定义空间
-func (dtc *DingTalkClient) CspaceGrantCustomSpace(info *CspaceGrantCustomSpaceRequest) (CspaceGrantCustomSpaceResponse, error) {
+func (dtc *Client) CspaceGrantCustomSpace(info *CspaceGrantCustomSpaceRequest) (CspaceGrantCustomSpaceResponse, error) {
 	var data CspaceGrantCustomSpaceResponse
 	params := url.Values{}
 	if info.AgentID != "" {

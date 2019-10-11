@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-type DingTalkClient struct {
+type Client struct {
 	DTConfig              *DTConfig
 	TopConfig             *TopConfig
 	HTTPClient            *http.Client
@@ -51,8 +51,8 @@ type DTIsvGetCompanyInfo struct {
 	AuthAccessToken string
 }
 
-func NewDingTalkClient(devType string, config *DTConfig) *DingTalkClient {
-	c := &DingTalkClient{
+func NewClient(devType string, config *DTConfig) *Client {
+	c := &Client{
 		DTConfig: &DTConfig{},
 		HTTPClient: &http.Client{
 			Timeout: 10 * time.Second,
@@ -102,14 +102,14 @@ func NewDingTalkClient(devType string, config *DTConfig) *DingTalkClient {
 	return c
 }
 
-func NewDingTalkISVClient(config *DTConfig) *DingTalkClient {
-	return NewDingTalkClient("isv", config)
+func NewISVClient(config *DTConfig) *Client {
+	return NewClient("isv", config)
 }
 
-func NewDingTalkCompanyClient(config *DTConfig) *DingTalkClient {
-	return NewDingTalkClient("company", config)
+func NewDTClient(config *DTConfig) *Client {
+	return NewClient("company", config)
 }
 
-func NewDingTalkMiniClient(config *DTConfig) *DingTalkClient {
-	return NewDingTalkClient("personalMini", config)
+func NewMiniClient(config *DTConfig) *Client {
+	return NewClient("personalMini", config)
 }

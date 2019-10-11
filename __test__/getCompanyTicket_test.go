@@ -5,7 +5,7 @@ import (
 )
 
 func Test_GetCompanyTicket(t *testing.T) {
-	c := GetCompanyDingTalkClient()
+	c := GetDTClient()
 	c.RefreshCompanyAccessToken()
 	ticket, err := c.GetJSAPITicket()
 	if err != nil {

@@ -14,7 +14,7 @@ const letterBytes = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 func Test_MediaDownloadFile(t *testing.T) {
 	mediaID := "@lADPBY0V4zNROQfNBUbNCWA" //填写你刚刚上传的mediaID
 	name := randStringBytesRmndr()
-	c := GetCompanyDingTalkClient()
+	c := GetDTClient()
 	c.RefreshCompanyAccessToken()
 	ce, ok := os.Create(name + ".jpg")
 	if ok == nil {

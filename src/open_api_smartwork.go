@@ -70,14 +70,14 @@ type SmartworkCheckinRecordData struct {
 }
 
 // 考勤打卡记录开放
-func (dtc *DingTalkClient) SmartworkAttendanceListRecord(info *SmartworkAttendanceListRecordRequest) (SmartworkAttendanceListRecordResponse, error) {
+func (dtc *Client) SmartworkAttendanceListRecord(info *SmartworkAttendanceListRecordRequest) (SmartworkAttendanceListRecordResponse, error) {
 	var data SmartworkAttendanceListRecordResponse
 	err := dtc.httpRPC("attendance/listRecord", nil, info, &data)
 	return data, err
 }
 
 // 获得签到数据
-func (dtc *DingTalkClient) SmartworkCheckinRecord(info *SmartworkCheckinRecordRequest) (SmartworkCheckinRecordResponse, error) {
+func (dtc *Client) SmartworkCheckinRecord(info *SmartworkCheckinRecordRequest) (SmartworkCheckinRecordResponse, error) {
 	var data SmartworkCheckinRecordResponse
 	params := url.Values{}
 	params.Add("department_id", info.DepartmentID)

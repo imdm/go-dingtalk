@@ -5,7 +5,7 @@ import (
 )
 
 func Test_GetCompanyAccessToken(t *testing.T) {
-	c := GetCompanyDingTalkClient()
+	c := GetDTClient()
 	c.RefreshCompanyAccessToken()
 	if c.AccessToken != "" {
 		t.Log("测试获取access_token通过")

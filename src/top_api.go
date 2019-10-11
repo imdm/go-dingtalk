@@ -15,7 +15,7 @@ func (t TopMapRequest) keys() []string {
 }
 
 // 查询用户是否开启了钉钉运动
-func (dtc *DingTalkClient) TopCorpHealthStepinfoGetUserStatus(userId string) ([]byte, error) {
+func (dtc *Client) TopCorpHealthStepinfoGetUserStatus(userId string) ([]byte, error) {
 	var data []byte
 	general := TopMapRequest{
 		"method": corpHealthStepinfoGetuserstatus,
@@ -26,7 +26,7 @@ func (dtc *DingTalkClient) TopCorpHealthStepinfoGetUserStatus(userId string) ([]
 }
 
 // 批量查询多个用户的钉钉运动步数
-func (dtc *DingTalkClient) TopCorpHealthStepinfoListByUserid(userIds []string, statDate string) ([]byte, error) {
+func (dtc *Client) TopCorpHealthStepinfoListByUserid(userIds []string, statDate string) ([]byte, error) {
 	var data []byte
 	general := TopMapRequest{
 		"method":    corpHealthStepinfoListByUserid,
@@ -38,7 +38,7 @@ func (dtc *DingTalkClient) TopCorpHealthStepinfoListByUserid(userIds []string, s
 }
 
 // 获取角色的员工列表
-func (dtc *DingTalkClient) TopCorpRoleSimpleList(roleId int, size int, offset int) ([]byte, error) {
+func (dtc *Client) TopCorpRoleSimpleList(roleId int, size int, offset int) ([]byte, error) {
 	var data []byte
 	general := TopMapRequest{
 		"method":  corpRoleSimpleList,
@@ -51,7 +51,7 @@ func (dtc *DingTalkClient) TopCorpRoleSimpleList(roleId int, size int, offset in
 }
 
 // 获取企业角色列表
-func (dtc *DingTalkClient) TopCorpRoleList(size int, offset int) ([]byte, error) {
+func (dtc *Client) TopCorpRoleList(size int, offset int) ([]byte, error) {
 	var data []byte
 	general := TopMapRequest{
 		"method": corpRoleList,
@@ -63,7 +63,7 @@ func (dtc *DingTalkClient) TopCorpRoleList(size int, offset int) ([]byte, error)
 }
 
 // 批量为员工增加角色信息
-func (dtc *DingTalkClient) TopCorpRoleAddRolesForemps(rolelIdList []int, userIdList []string) ([]byte, error) {
+func (dtc *Client) TopCorpRoleAddRolesForemps(rolelIdList []int, userIdList []string) ([]byte, error) {
 	var data []byte
 	general := TopMapRequest{
 		"method":       corpRoleAddRolesForemps,
@@ -75,7 +75,7 @@ func (dtc *DingTalkClient) TopCorpRoleAddRolesForemps(rolelIdList []int, userIdL
 }
 
 // 批量删除员工角的色信息
-func (dtc *DingTalkClient) TopCorpRoleRemoveRolesForemps(roleIdList []int, userIdList []string) ([]byte, error) {
+func (dtc *Client) TopCorpRoleRemoveRolesForemps(roleIdList []int, userIdList []string) ([]byte, error) {
 	var data []byte
 	general := TopMapRequest{
 		"method":      corpRoleRemoveRolesForemps,
@@ -87,7 +87,7 @@ func (dtc *DingTalkClient) TopCorpRoleRemoveRolesForemps(roleIdList []int, userI
 }
 
 // 删除角色信息
-func (dtc *DingTalkClient) TopCorpRoleDeleteRole(roleId int) ([]byte, error) {
+func (dtc *Client) TopCorpRoleDeleteRole(roleId int) ([]byte, error) {
 	var data []byte
 	general := TopMapRequest{
 		"method":  corpRoleDeleteRole,
@@ -98,7 +98,7 @@ func (dtc *DingTalkClient) TopCorpRoleDeleteRole(roleId int) ([]byte, error) {
 }
 
 // 获取角色组信息
-func (dtc *DingTalkClient) TopCorpRoleGetRoleGroup(groupId int) ([]byte, error) {
+func (dtc *Client) TopCorpRoleGetRoleGroup(groupId int) ([]byte, error) {
 	var data []byte
 	general := TopMapRequest{
 		"method":   corpRoleGetRoleGroup,
@@ -109,7 +109,7 @@ func (dtc *DingTalkClient) TopCorpRoleGetRoleGroup(groupId int) ([]byte, error) 
 }
 
 // 企业会话消息异步发送
-func (dtc *DingTalkClient) TopCorpMessageCorpconversationAsyncsend(info *TopCorpMessageCorpconversationAsyncsendRequest) ([]byte, error) {
+func (dtc *Client) TopCorpMessageCorpconversationAsyncsend(info *TopCorpMessageCorpconversationAsyncsendRequest) ([]byte, error) {
 	var data []byte
 	general := TopMapRequest{
 		"method":   corpMessageCorpconversationAsyncsend,
@@ -133,7 +133,7 @@ func (dtc *DingTalkClient) TopCorpMessageCorpconversationAsyncsend(info *TopCorp
 }
 
 // 通过用户授权码异步向企业会话发送消息
-func (dtc *DingTalkClient) TopCorpMessageCorpconversationAsyncsendbycode(info *TopCorpMessageCorpconversationAsyncsendbycodeRequest) ([]byte, error) {
+func (dtc *Client) TopCorpMessageCorpconversationAsyncsendbycode(info *TopCorpMessageCorpconversationAsyncsendbycodeRequest) ([]byte, error) {
 	var data []byte
 	general := TopMapRequest{
 		"method":   corpMessageCorpconversationAsyncsendbycode,
@@ -158,7 +158,7 @@ func (dtc *DingTalkClient) TopCorpMessageCorpconversationAsyncsendbycode(info *T
 }
 
 // 获取异步发送企业会话消息的发送进度
-func (dtc *DingTalkClient) TopCorpMessageCorpconversationGetsendprogress(agentId int, taskId int) ([]byte, error) {
+func (dtc *Client) TopCorpMessageCorpconversationGetsendprogress(agentId int, taskId int) ([]byte, error) {
 	var data []byte
 	general := TopMapRequest{
 		"method":   corpMessageCorpconversationGetsendprogress,
@@ -170,7 +170,7 @@ func (dtc *DingTalkClient) TopCorpMessageCorpconversationGetsendprogress(agentId
 }
 
 // 获取异步向企业会话发送消息的结果
-func (dtc *DingTalkClient) TopCorpMessageCorpconversationGetsendresult(agentId interface{}, taskId interface{}) ([]byte, error) {
+func (dtc *Client) TopCorpMessageCorpconversationGetsendresult(agentId interface{}, taskId interface{}) ([]byte, error) {
 	var data []byte
 	general := TopMapRequest{
 		"method": corpMessageCorpconversationGetsendresult,
@@ -190,7 +190,7 @@ func (dtc *DingTalkClient) TopCorpMessageCorpconversationGetsendresult(agentId i
 }
 
 // 考勤排班信息按天全量查询接口
-func (dtc *DingTalkClient) TopSmartworkAttendsListschedule(workDate string, offset int, size int) ([]byte, error) {
+func (dtc *Client) TopSmartworkAttendsListschedule(workDate string, offset int, size int) ([]byte, error) {
 	var data []byte
 	general := TopMapRequest{
 		"method":    smartworkAttendsListschedule,
@@ -203,7 +203,7 @@ func (dtc *DingTalkClient) TopSmartworkAttendsListschedule(workDate string, offs
 }
 
 // 获取考勤组列表详情
-func (dtc *DingTalkClient) TopSmartworkAttendsGetsimplegroups(offset int, size int) ([]byte, error) {
+func (dtc *Client) TopSmartworkAttendsGetsimplegroups(offset int, size int) ([]byte, error) {
 	var data []byte
 	general := TopMapRequest{
 		"method": smartworkAttendsGetsimplegroups,
@@ -215,7 +215,7 @@ func (dtc *DingTalkClient) TopSmartworkAttendsGetsimplegroups(offset int, size i
 }
 
 // 获取多个用户的签到记录
-func (dtc *DingTalkClient) TopSmartworkCheckinRecordGet(info *SmartworkCheckinRecordGetRequest) ([]byte, error) {
+func (dtc *Client) TopSmartworkCheckinRecordGet(info *SmartworkCheckinRecordGetRequest) ([]byte, error) {
 	var data []byte
 	general := TopMapRequest{
 		"method":      smartworkCheckinRecordGet,
@@ -230,7 +230,7 @@ func (dtc *DingTalkClient) TopSmartworkCheckinRecordGet(info *SmartworkCheckinRe
 }
 
 // 复制审批流
-func (dtc *DingTalkClient) TopSmartworkBpmsProcessCopy(info *SmartworkBpmsProcessCopyRequest) ([]byte, error) {
+func (dtc *Client) TopSmartworkBpmsProcessCopy(info *SmartworkBpmsProcessCopyRequest) ([]byte, error) {
 	var data []byte
 	general := TopMapRequest{
 		"method":       smartworkBpmsProcessCopy,
@@ -251,7 +251,7 @@ func (dtc *DingTalkClient) TopSmartworkBpmsProcessCopy(info *SmartworkBpmsProces
 }
 
 // 更新审批流
-func (dtc *DingTalkClient) TopSmartworkBpmsProcessSync(info *SmartworkBpmsProcessSyncRequest) ([]byte, error) {
+func (dtc *Client) TopSmartworkBpmsProcessSync(info *SmartworkBpmsProcessSyncRequest) ([]byte, error) {
 	var data []byte
 	general := TopMapRequest{
 		"method":              smartworkBpmsProcessSync,
@@ -270,7 +270,7 @@ func (dtc *DingTalkClient) TopSmartworkBpmsProcessSync(info *SmartworkBpmsProces
 }
 
 // 发起审批实例
-func (dtc *DingTalkClient) TopSmartworkBpmsProcessinstanceCreate(info *SmartworkBpmsProcessinstanceCreateRequest) ([]byte, error) {
+func (dtc *Client) TopSmartworkBpmsProcessinstanceCreate(info *SmartworkBpmsProcessinstanceCreateRequest) ([]byte, error) {
 	var data []byte
 	general := TopMapRequest{
 		"method":             smartworkBpmsProcessinstanceCreate,
@@ -299,7 +299,7 @@ func (dtc *DingTalkClient) TopSmartworkBpmsProcessinstanceCreate(info *Smartwork
 }
 
 // 获取审批实例列表
-func (dtc *DingTalkClient) TopSmartworkBpmsProcessinstanceList(info *SmartworkBpmsProcessinstanceListRequest) ([]byte, error) {
+func (dtc *Client) TopSmartworkBpmsProcessinstanceList(info *SmartworkBpmsProcessinstanceListRequest) ([]byte, error) {
 	var data []byte
 	general := TopMapRequest{
 		"method":       smartworkBpmsProcessinstanceList,
@@ -323,7 +323,7 @@ func (dtc *DingTalkClient) TopSmartworkBpmsProcessinstanceList(info *SmartworkBp
 }
 
 // 添加企业外部联系人
-func (dtc *DingTalkClient) TopCorpExtcontactCreate(info *CorpExtcontactRequest) ([]byte, error) {
+func (dtc *Client) TopCorpExtcontactCreate(info *CorpExtcontactRequest) ([]byte, error) {
 	var data []byte
 	general := TopMapRequest{
 		"method": corpExtcontactCreate,
@@ -339,7 +339,7 @@ func (dtc *DingTalkClient) TopCorpExtcontactCreate(info *CorpExtcontactRequest) 
 }
 
 // 更新外部联系人
-func (dtc *DingTalkClient) TopCorpExtcontactUpdate(info *CorpExtcontactRequest) ([]byte, error) {
+func (dtc *Client) TopCorpExtcontactUpdate(info *CorpExtcontactRequest) ([]byte, error) {
 	var data []byte
 	general := TopMapRequest{
 		"method": corpExtcontactUpdate,
@@ -355,7 +355,7 @@ func (dtc *DingTalkClient) TopCorpExtcontactUpdate(info *CorpExtcontactRequest) 
 }
 
 // 获取外部联系人列表
-func (dtc *DingTalkClient) TopCorpExtcontactList(size int, offset int) ([]byte, error) {
+func (dtc *Client) TopCorpExtcontactList(size int, offset int) ([]byte, error) {
 	var data []byte
 	general := TopMapRequest{
 		"method": corpExtcontactList,
@@ -367,7 +367,7 @@ func (dtc *DingTalkClient) TopCorpExtcontactList(size int, offset int) ([]byte, 
 }
 
 // 外部单个联系人详情
-func (dtc *DingTalkClient) TopCorpExtcontactGet(userID string) ([]byte, error) {
+func (dtc *Client) TopCorpExtcontactGet(userID string) ([]byte, error) {
 	var data []byte
 	general := TopMapRequest{
 		"method":  corpExtcontactGet,
@@ -378,7 +378,7 @@ func (dtc *DingTalkClient) TopCorpExtcontactGet(userID string) ([]byte, error) {
 }
 
 // 外部联系人标签列表
-func (dtc *DingTalkClient) TopCorpExtcontactListlabelgroups(size int, offset int) ([]byte, error) {
+func (dtc *Client) TopCorpExtcontactListlabelgroups(size int, offset int) ([]byte, error) {
 	var data []byte
 	general := TopMapRequest{
 		"method": corpExtcontactListlabelgroups,

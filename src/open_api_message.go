@@ -98,7 +98,7 @@ type MessageSendMarkdown struct {
 }
 
 // 发送普通消息
-func (dtc *DingTalkClient) MessageSendToConversation(info interface{}) (MessageSendToConversationResponse, error) {
+func (dtc *Client) MessageSendToConversation(info interface{}) (MessageSendToConversationResponse, error) {
 	var data MessageSendToConversationResponse
 	err := dtc.httpRPC("message/send_to_conversation", nil, info, &data)
 	return data, err

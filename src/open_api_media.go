@@ -25,7 +25,7 @@ type uploadFile struct {
 }
 
 // 上传媒体文件
-func (dtc *DingTalkClient) MediaUpload(mediaType string, fileName string, reader io.Reader) (MediaUploadResponse, error) {
+func (dtc *Client) MediaUpload(mediaType string, fileName string, reader io.Reader) (MediaUploadResponse, error) {
 	var data MediaUploadResponse
 	upload := &uploadFile{
 		FieldName: "media",
@@ -39,7 +39,7 @@ func (dtc *DingTalkClient) MediaUpload(mediaType string, fileName string, reader
 }
 
 // 获取媒体文件
-func (dtc *DingTalkClient) MediaDownloadFile(mediaID string, write io.Writer) error {
+func (dtc *Client) MediaDownloadFile(mediaID string, write io.Writer) error {
 	var data MediaDownloadFileResponse
 	data.MediaID = mediaID
 	data.Writer = write

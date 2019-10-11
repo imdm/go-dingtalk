@@ -33,35 +33,35 @@ type FailedCallbacks struct {
 }
 
 // 注册事件回调接口
-func (dtc *DingTalkClient) CBRegisterCallback(info *CBCallBackRequest) (CBCallBackResponse, error) {
+func (dtc *Client) CBRegisterCallback(info *CBCallBackRequest) (CBCallBackResponse, error) {
 	var data CBCallBackResponse
 	err := dtc.httpRPC("call_back/register_call_back", nil, info, &data)
 	return data, err
 }
 
 // 查询事件回调接口
-func (dtc *DingTalkClient) CBQueryCallback() (CBQueryCallbackResponse, error) {
+func (dtc *Client) CBQueryCallback() (CBQueryCallbackResponse, error) {
 	var data CBQueryCallbackResponse
 	err := dtc.httpRPC("call_back/get_call_back", nil, nil, &data)
 	return data, err
 }
 
 // 更新事件回调接口
-func (dtc *DingTalkClient) CBUpdateCallback(info *CBCallBackRequest) (CBCallBackResponse, error) {
+func (dtc *Client) CBUpdateCallback(info *CBCallBackRequest) (CBCallBackResponse, error) {
 	var data CBCallBackResponse
 	err := dtc.httpRPC("call_back/update_call_back", nil, info, &data)
 	return data, err
 }
 
 // 删除事件回调接口
-func (dtc *DingTalkClient) CBDeleteCallback() (CBCallBackResponse, error) {
+func (dtc *Client) CBDeleteCallback() (CBCallBackResponse, error) {
 	var data CBCallBackResponse
 	err := dtc.httpRPC("call_back/delete_call_back", nil, nil, &data)
 	return data, err
 }
 
 // 获取回调失败的结果
-func (dtc *DingTalkClient) CBGetFailedCallbacks() (CBGetFailedCallbackResponse, error) {
+func (dtc *Client) CBGetFailedCallbacks() (CBGetFailedCallbackResponse, error) {
 	var data CBGetFailedCallbackResponse
 	err := dtc.httpRPC("call_back/get_call_back_failed_result", nil, nil, &data)
 	return data, err

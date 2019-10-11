@@ -135,21 +135,21 @@ type ChatSendMarkdown struct {
 }
 
 // 创建会话
-func (dtc *DingTalkClient) ChatCreate(info *ChatCreateRequest) (ChatCreateResponse, error) {
+func (dtc *Client) ChatCreate(info *ChatCreateRequest) (ChatCreateResponse, error) {
 	var data ChatCreateResponse
 	err := dtc.httpRPC("chat/create", nil, info, &data)
 	return data, err
 }
 
 // 修改会话
-func (dtc *DingTalkClient) ChatUpdate(info *ChatUpdateRequest) (ChatUpdateResponse, error) {
+func (dtc *Client) ChatUpdate(info *ChatUpdateRequest) (ChatUpdateResponse, error) {
 	var data ChatUpdateResponse
 	err := dtc.httpRPC("chat/update", nil, info, &data)
 	return data, err
 }
 
 // 获取会话
-func (dtc *DingTalkClient) ChatGet(chatId string) (ChatGetResponse, error) {
+func (dtc *Client) ChatGet(chatId string) (ChatGetResponse, error) {
 	var data ChatGetResponse
 	params := url.Values{}
 	params.Add("chatid", chatId)
@@ -158,7 +158,7 @@ func (dtc *DingTalkClient) ChatGet(chatId string) (ChatGetResponse, error) {
 }
 
 // 发送群消息
-func (dtc *DingTalkClient) ChatSend(info interface{}) (ChatSendResponse, error) {
+func (dtc *Client) ChatSend(info interface{}) (ChatSendResponse, error) {
 	var data ChatSendResponse
 	err := dtc.httpRPC("chat/send", nil, info, &data)
 	return data, err

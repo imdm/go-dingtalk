@@ -19,7 +19,7 @@ import (
 	"time"
 )
 
-func (dtc *DingTalkClient) httpRPC(path string, params url.Values, requestData interface{}, responseData Unmarshallable, isvGetCInfo ...interface{}) error {
+func (dtc *Client) httpRPC(path string, params url.Values, requestData interface{}, responseData Unmarshallable, isvGetCInfo ...interface{}) error {
 	if dtc.DevType == "company" {
 		if dtc.AccessToken != "" {
 			if params == nil {
@@ -71,7 +71,7 @@ func (dtc *DingTalkClient) httpRPC(path string, params url.Values, requestData i
 	return dtc.httpRequest("oapi", path, params, requestData, responseData)
 }
 
-func (dtc *DingTalkClient) httpSNS(path string, params url.Values, requestData interface{}, responseData Unmarshallable) error {
+func (dtc *Client) httpSNS(path string, params url.Values, requestData interface{}, responseData Unmarshallable) error {
 	if dtc.SNSAccessToken != "" && path != "sns/getuserinfo" {
 		if params == nil {
 			params = url.Values{}
@@ -83,7 +83,7 @@ func (dtc *DingTalkClient) httpSNS(path string, params url.Values, requestData i
 	return dtc.httpRequest("oapi", path, params, requestData, responseData)
 }
 
-func (dtc *DingTalkClient) httpSSO(path string, params url.Values, requestData interface{}, responseData Unmarshallable) error {
+func (dtc *Client) httpSSO(path string, params url.Values, requestData interface{}, responseData Unmarshallable) error {
 	if dtc.SSOAccessToken != "" {
 		if params == nil {
 			params = url.Values{}
@@ -95,7 +95,7 @@ func (dtc *DingTalkClient) httpSSO(path string, params url.Values, requestData i
 	return dtc.httpRequest("oapi", path, params, requestData, responseData)
 }
 
-func (dtc *DingTalkClient) httpTOP(requestData interface{}, responseData interface{}) error {
+func (dtc *Client) httpTOP(requestData interface{}, responseData interface{}) error {
 	var params []string
 	var paramsJoin string
 	var cipher []byte
@@ -183,7 +183,7 @@ func sortParamsKey(topParams TopMapRequest) []string {
 	return t
 }
 
-func (dtc *DingTalkClient) httpRequest(tagType string, path interface{}, params url.Values, requestData interface{}, responseData interface{}) error {
+func (dtc *Client) httpRequest(tagType string, path interface{}, params url.Values, requestData interface{}, responseData interface{}) error {
 	var request *http.Request
 	var requestUrl string
 	client := dtc.HTTPClient

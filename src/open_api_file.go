@@ -41,7 +41,7 @@ type FileUploadChunkResponse struct {
 }
 
 // 开启文件上传事务
-func (dtc *DingTalkClient) FileUploadStartTransaction(agentID string, fileSize int, chunkNumbers int) (FileUploadStartTransactionResponse, error) {
+func (dtc *Client) FileUploadStartTransaction(agentID string, fileSize int, chunkNumbers int) (FileUploadStartTransactionResponse, error) {
 	var data FileUploadStartTransactionResponse
 	params := url.Values{}
 	params.Add("agent_id", agentID)
@@ -52,7 +52,7 @@ func (dtc *DingTalkClient) FileUploadStartTransaction(agentID string, fileSize i
 }
 
 // 提交文件上传事务
-func (dtc *DingTalkClient) FileUploadEndTransaction(info *FileUploadEndTransactionRequest) (FileUploadEndTransactionResponse, error) {
+func (dtc *Client) FileUploadEndTransaction(info *FileUploadEndTransactionRequest) (FileUploadEndTransactionResponse, error) {
 	var data FileUploadEndTransactionResponse
 	params := url.Values{}
 	params.Add("agent_id", info.AgentID)
@@ -64,7 +64,7 @@ func (dtc *DingTalkClient) FileUploadEndTransaction(info *FileUploadEndTransacti
 }
 
 // 上传文件块
-func (dtc *DingTalkClient) FileUploadChunk(info *FileUploadChunkRequest) (FileUploadChunkResponse, error) {
+func (dtc *Client) FileUploadChunk(info *FileUploadChunkRequest) (FileUploadChunkResponse, error) {
 	var data FileUploadChunkResponse
 	params := url.Values{}
 	params.Add("agent_id", info.AgentID)
@@ -80,7 +80,7 @@ func (dtc *DingTalkClient) FileUploadChunk(info *FileUploadChunkRequest) (FileUp
 }
 
 // 上传单个文件
-func (dtc *DingTalkClient) FileUploadSingle(agentID string, fileSize int64, fileName string, reader io.Reader) (FileUploadSingleResponse, error) {
+func (dtc *Client) FileUploadSingle(agentID string, fileSize int64, fileName string, reader io.Reader) (FileUploadSingleResponse, error) {
 	var data FileUploadSingleResponse
 	upload := &uploadFile{
 		FieldName: "file",

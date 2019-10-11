@@ -98,21 +98,21 @@ type MicroAppRuleDeleteResponse struct {
 }
 
 // 创建微应用
-func (dtc *DingTalkClient) MicroAppCreate(info *MicroAppCreateRequest) (MicroAppCreateResponse, error) {
+func (dtc *Client) MicroAppCreate(info *MicroAppCreateRequest) (MicroAppCreateResponse, error) {
 	var data MicroAppCreateResponse
 	err := dtc.httpRPC("microapp/create", nil, info, &data)
 	return data, err
 }
 
 // 更新微应用
-func (dtc *DingTalkClient) MicroAppUpdate(info *MicroAppUpdateRequest) (MicroAppUpdateResponse, error) {
+func (dtc *Client) MicroAppUpdate(info *MicroAppUpdateRequest) (MicroAppUpdateResponse, error) {
 	var data MicroAppUpdateResponse
 	err := dtc.httpRPC("microapp/update", nil, info, &data)
 	return data, err
 }
 
 // 删除微应用
-func (dtc *DingTalkClient) MicroAppDelete(agentId int) (MicroAppDeleteResponse, error) {
+func (dtc *Client) MicroAppDelete(agentId int) (MicroAppDeleteResponse, error) {
 	var data MicroAppDeleteResponse
 	params := url.Values{}
 	params.Add("agentId", fmt.Sprintf("%s", agentId))
@@ -121,14 +121,14 @@ func (dtc *DingTalkClient) MicroAppDelete(agentId int) (MicroAppDeleteResponse, 
 }
 
 // 列出微应用
-func (dtc *DingTalkClient) MicroAppList() (MicroAppListResponse, error) {
+func (dtc *Client) MicroAppList() (MicroAppListResponse, error) {
 	var data MicroAppListResponse
 	err := dtc.httpRPC("microapp/list", nil, map[string]string{}, &data)
 	return data, err
 }
 
 // 列出员工可见的微应用
-func (dtc *DingTalkClient) MicroAppListByUserId(userId string) (MicroAppListByUserIdResponse, error) {
+func (dtc *Client) MicroAppListByUserId(userId string) (MicroAppListByUserIdResponse, error) {
 	var data MicroAppListByUserIdResponse
 	params := url.Values{}
 	params.Add("userid", userId)
@@ -137,7 +137,7 @@ func (dtc *DingTalkClient) MicroAppListByUserId(userId string) (MicroAppListByUs
 }
 
 // 获取企业设置的微应用可见范围
-func (dtc *DingTalkClient) MicroAppVisibleScopes(agentId int) (MicroAppVisibleScopesResponse, error) {
+func (dtc *Client) MicroAppVisibleScopes(agentId int) (MicroAppVisibleScopesResponse, error) {
 	var data MicroAppVisibleScopesResponse
 	params := url.Values{}
 	params.Add("agentId", fmt.Sprintf("%s", agentId))
@@ -146,14 +146,14 @@ func (dtc *DingTalkClient) MicroAppVisibleScopes(agentId int) (MicroAppVisibleSc
 }
 
 // 设置微应用的可见范围
-func (dtc *DingTalkClient) MicroAppSetVisibleScopes(info *MicroAppSetVisibleScopesRequest) (MicroAppSetVisibleScopesResponse, error) {
+func (dtc *Client) MicroAppSetVisibleScopes(info *MicroAppSetVisibleScopesRequest) (MicroAppSetVisibleScopesResponse, error) {
 	var data MicroAppSetVisibleScopesResponse
 	err := dtc.httpRPC("microapp/set_visible_scopes", nil, info, &data)
 	return data, err
 }
 
 // 获取指定微应用下指定用户绑定的全部规则（定向开放接口）
-func (dtc *DingTalkClient) MicroAppRuleGetRuleList(userId string, agentId string) (MicroAppRuleGetRuleListResponse, error) {
+func (dtc *Client) MicroAppRuleGetRuleList(userId string, agentId string) (MicroAppRuleGetRuleListResponse, error) {
 	var data MicroAppRuleGetRuleListResponse
 	err := dtc.httpRPC("microapp/rule/get_rule_list", nil, map[string]string{
 		"userid":  userId,
@@ -163,7 +163,7 @@ func (dtc *DingTalkClient) MicroAppRuleGetRuleList(userId string, agentId string
 }
 
 // 获取规则绑定的用户数（定向开放接口）
-func (dtc *DingTalkClient) MicroAppRuleGetUserTota(agentId int, ruleIdList []int) (MicroAppRuleGetUserTotaResponse, error) {
+func (dtc *Client) MicroAppRuleGetUserTota(agentId int, ruleIdList []int) (MicroAppRuleGetUserTotaResponse, error) {
 	var data MicroAppRuleGetUserTotaResponse
 	err := dtc.httpRPC("microapp/rule/get_user_total", nil, map[string]interface{}{
 		"agentId":    agentId,
@@ -173,7 +173,7 @@ func (dtc *DingTalkClient) MicroAppRuleGetUserTota(agentId int, ruleIdList []int
 }
 
 // 删除规则（定向开放接口）
-func (dtc *DingTalkClient) MicroAppRuleDelete(agentId int, ruleId int) (MicroAppRuleDeleteResponse, error) {
+func (dtc *Client) MicroAppRuleDelete(agentId int, ruleId int) (MicroAppRuleDeleteResponse, error) {
 	var data MicroAppRuleDeleteResponse
 	err := dtc.httpRPC("microapp/rule/delete", nil, map[string]int{
 		"agentId": agentId,

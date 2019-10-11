@@ -100,7 +100,7 @@ type DepartmentListParentDeptsResponse struct {
 }
 
 // 获取子部门Id列表
-func (dtc *DingTalkClient) SubDepartmentList(id interface{}) (SubDepartmentListResponse, error) {
+func (dtc *Client) SubDepartmentList(id interface{}) (SubDepartmentListResponse, error) {
 	var data SubDepartmentListResponse
 	params := url.Values{}
 	if id != nil {
@@ -113,7 +113,7 @@ func (dtc *DingTalkClient) SubDepartmentList(id interface{}) (SubDepartmentListR
 }
 
 // 获取部门id列表
-func (dtc *DingTalkClient) DepartmentList(id interface{}, lang interface{}) (DepartmentListResponse, error) {
+func (dtc *Client) DepartmentList(id interface{}, lang interface{}) (DepartmentListResponse, error) {
 	var data DepartmentListResponse
 	params := url.Values{}
 	if id != nil {
@@ -131,7 +131,7 @@ func (dtc *DingTalkClient) DepartmentList(id interface{}, lang interface{}) (Dep
 }
 
 // 获取部门详情
-func (dtc *DingTalkClient) DepartmentDetail(id interface{}, lang interface{}) (DepartmentDetailResponse, error) {
+func (dtc *Client) DepartmentDetail(id interface{}, lang interface{}) (DepartmentDetailResponse, error) {
 	var data DepartmentDetailResponse
 	params := url.Values{}
 	if id != nil {
@@ -149,21 +149,21 @@ func (dtc *DingTalkClient) DepartmentDetail(id interface{}, lang interface{}) (D
 }
 
 // 创建部门
-func (dtc *DingTalkClient) DepartmentCreate(info *DepartmentCreateRequest) (DepartmentCreateResponse, error) {
+func (dtc *Client) DepartmentCreate(info *DepartmentCreateRequest) (DepartmentCreateResponse, error) {
 	var data DepartmentCreateResponse
 	err := dtc.httpRPC("department/create", nil, info, &data)
 	return data, err
 }
 
 // 更新部门
-func (dtc *DingTalkClient) DepartmentUpdate(info *DepartmentUpdateRequest) (DepartmentUpdateResponse, error) {
+func (dtc *Client) DepartmentUpdate(info *DepartmentUpdateRequest) (DepartmentUpdateResponse, error) {
 	var data DepartmentUpdateResponse
 	err := dtc.httpRPC("department/update", nil, info, &data)
 	return data, err
 }
 
 // 删除部门
-func (dtc *DingTalkClient) DepartmentDelete(id int) (DepartmentDeleteResponse, error) {
+func (dtc *Client) DepartmentDelete(id int) (DepartmentDeleteResponse, error) {
 	var data DepartmentDeleteResponse
 	params := url.Values{}
 	params.Add("id", fmt.Sprintf("%d", id))
@@ -172,7 +172,7 @@ func (dtc *DingTalkClient) DepartmentDelete(id int) (DepartmentDeleteResponse, e
 }
 
 // 查询部门的所有上级父部门路径
-func (dtc *DingTalkClient) DepartmentListParentDeptsByDept(id int) (DepartmentListParentDeptsByDeptResponse, error) {
+func (dtc *Client) DepartmentListParentDeptsByDept(id int) (DepartmentListParentDeptsByDeptResponse, error) {
 	var data DepartmentListParentDeptsByDeptResponse
 	params := url.Values{}
 	params.Add("id", fmt.Sprintf("%d", id))
@@ -181,7 +181,7 @@ func (dtc *DingTalkClient) DepartmentListParentDeptsByDept(id int) (DepartmentLi
 }
 
 // 查询指定用户的所有上级父部门路径
-func (dtc *DingTalkClient) DepartmentListParentDepts(userId string) (DepartmentListParentDeptsResponse, error) {
+func (dtc *Client) DepartmentListParentDepts(userId string) (DepartmentListParentDeptsResponse, error) {
 	var data DepartmentListParentDeptsResponse
 	params := url.Values{}
 	params.Add("userId", userId)

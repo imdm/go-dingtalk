@@ -6,7 +6,7 @@ import (
 )
 
 func Test_MediaUpload(t *testing.T) {
-	c := GetCompanyDingTalkClient()
+	c := GetDTClient()
 	c.RefreshCompanyAccessToken()
 	o, ok := os.Open("wow.jpg")
 	if ok == nil {

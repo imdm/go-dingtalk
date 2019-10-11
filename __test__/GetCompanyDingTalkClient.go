@@ -6,7 +6,7 @@ import (
 	"../src"
 )
 
-func GetCompanyDingTalkClient() *dingtalk.DingTalkClient {
+func GetDTClient() *dingtalk.Client {
 	CorpID := os.Getenv("CorpId")
 	CorpSecret := os.Getenv("AppSecret")
 	AgentID := os.Getenv("AgentID")
@@ -21,6 +21,6 @@ func GetCompanyDingTalkClient() *dingtalk.DingTalkClient {
 		SNSAppID:  SNSAppID,
 		SNSSecret: SNSSecret,
 	}
-	c := dingtalk.NewDingTalkCompanyClient(config)
+	c := dingtalk.NewDTClient(config)
 	return c
 }

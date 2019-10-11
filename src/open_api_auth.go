@@ -143,7 +143,7 @@ func (e *SuiteAccessTokenResponse) ExpiresIn() int {
 }
 
 // 刷新企业获取的access_token
-func (dtc *DingTalkClient) RefreshCompanyAccessToken() error {
+func (dtc *Client) RefreshCompanyAccessToken() error {
 	dtc.Locker.Lock()
 	var data AccessTokenResponse
 	err := dtc.AccessTokenCache.Get(&data)
@@ -168,7 +168,7 @@ func (dtc *DingTalkClient) RefreshCompanyAccessToken() error {
 }
 
 // 刷新企业获取的sso_access_token
-func (dtc *DingTalkClient) RefreshSSOAccessToken() error {
+func (dtc *Client) RefreshSSOAccessToken() error {
 	dtc.Locker.Lock()
 	var data SSOAccessTokenResponse
 	err := dtc.SSOAccessTokenCache.Get(&data)
@@ -193,7 +193,7 @@ func (dtc *DingTalkClient) RefreshSSOAccessToken() error {
 }
 
 // 刷新 SNS access_token
-func (dtc *DingTalkClient) RefreshSNSAccessToken() error {
+func (dtc *Client) RefreshSNSAccessToken() error {
 	dtc.Locker.Lock()
 	var data SNSAccessTokenResponse
 	err := dtc.SNSAccessTokenCache.Get(&data)
@@ -218,7 +218,7 @@ func (dtc *DingTalkClient) RefreshSNSAccessToken() error {
 }
 
 // 刷新 isv suite_access_token
-func (dtc *DingTalkClient) RefreshSuiteAccessToken() error {
+func (dtc *Client) RefreshSuiteAccessToken() error {
 	dtc.Locker.Lock()
 	var data SuiteAccessTokenResponse
 	err := dtc.SuiteAccessTokenCache.Get(&data)
@@ -245,7 +245,7 @@ func (dtc *DingTalkClient) RefreshSuiteAccessToken() error {
 }
 
 // 获取Ticket
-func (dtc *DingTalkClient) GetJSAPITicket() (ticket string, err error) {
+func (dtc *Client) GetJSAPITicket() (ticket string, err error) {
 	dtc.Locker.Lock()
 	var data TicketResponse
 	err = dtc.TicketCache.Get(&data)
@@ -263,7 +263,7 @@ func (dtc *DingTalkClient) GetJSAPITicket() (ticket string, err error) {
 }
 
 // 配置config信息
-func (dtc *DingTalkClient) GetConfig(nonceStr string, timestamp string, url string) string {
+func (dtc *Client) GetConfig(nonceStr string, timestamp string, url string) string {
 	var config map[string]string
 	ticket, _ := dtc.GetJSAPITicket()
 	config = map[string]string{
@@ -286,14 +286,14 @@ func sign(ticket string, nonceStr string, timeStamp string, url string) string {
 }
 
 // 获取授权范围
-func (dtc *DingTalkClient) GetAuthScopes() (ScopesResponse, error) {
+func (dtc *Client) GetAuthScopes() (ScopesResponse, error) {
 	var data ScopesResponse
 	err := dtc.httpRPC("auth/scopes", nil, nil, &data)
 	return data, err
 }
 
 // 获取企业授权的永久授权码
-func (dtc *DingTalkClient) IsvGetPermanentCode(tmpAuthCode string) (GetPermanentCodeResponse, error) {
+func (dtc *Client) IsvGetPermanentCode(tmpAuthCode string) (GetPermanentCodeResponse, error) {
 	var data GetPermanentCodeResponse
 	requestData := map[string]string{
 		"tmp_auth_code": tmpAuthCode,
@@ -303,7 +303,7 @@ func (dtc *DingTalkClient) IsvGetPermanentCode(tmpAuthCode string) (GetPermanent
 }
 
 // 激活套件
-func (dtc *DingTalkClient) IsvActivateSuite(authCorpID string, permanentCode string) (ActivateSuiteResponse, error) {
+func (dtc *Client) IsvActivateSuite(authCorpID string, permanentCode string) (ActivateSuiteResponse, error) {
 	var data ActivateSuiteResponse
 	requestData := map[string]string{
 		"suite_key":      dtc.DTConfig.SuiteKey,
@@ -315,7 +315,7 @@ func (dtc *DingTalkClient) IsvActivateSuite(authCorpID string, permanentCode str
 }
 
 // 获取企业授权的凭证
-func (dtc *DingTalkClient) IsvGetCorpAccessToken(authCorpID string, permanentCode string) (GetCorpAccessTokenResponse, error) {
+func (dtc *Client) IsvGetCorpAccessToken(authCorpID string, permanentCode string) (GetCorpAccessTokenResponse, error) {
 	var data GetCorpAccessTokenResponse
 	requestData := map[string]string{
 		"auth_corpid":    authCorpID,
@@ -326,12 +326,12 @@ func (dtc *DingTalkClient) IsvGetCorpAccessToken(authCorpID string, permanentCod
 }
 
 // 直接获取企业授权的凭证
-func (dtc *DingTalkClient) IsvGetCAT(tmpAuthCode string) {
+func (dtc *Client) IsvGetCAT(tmpAuthCode string) {
 
 }
 
 // 获取企业的基本信息
-func (dtc *DingTalkClient) IsvGetCompanyInfo(authCorpID string) (GetCompanyInfoResponse, error) {
+func (dtc *Client) IsvGetCompanyInfo(authCorpID string) (GetCompanyInfoResponse, error) {
 	var data GetCompanyInfoResponse
 	requestData := map[string]string{
 		"auth_corpid": authCorpID,

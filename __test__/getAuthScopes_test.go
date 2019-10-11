@@ -5,7 +5,7 @@ import (
 )
 
 func Test_GetAuthScopes(t *testing.T) {
-	c := GetCompanyDingTalkClient()
+	c := GetDTClient()
 	c.RefreshCompanyAccessToken()
 	data, err := c.GetAuthScopes()
 	if err != nil {

@@ -30,7 +30,7 @@ type SNSGetUserInfo struct {
 	DingID       string
 }
 
-func (dtc *DingTalkClient) SNSGetPersistentCode(code string) (SNSGetPersistentCodeResponse, error) {
+func (dtc *Client) SNSGetPersistentCode(code string) (SNSGetPersistentCodeResponse, error) {
 	var data SNSGetPersistentCodeResponse
 	requestData := map[string]string{
 		"tmp_auth_code": code,
@@ -39,7 +39,7 @@ func (dtc *DingTalkClient) SNSGetPersistentCode(code string) (SNSGetPersistentCo
 	return data, err
 }
 
-func (dtc *DingTalkClient) SNSGetSNSToken(openID string, persistentCode string) (SNSGetSNSTokenResponse, error) {
+func (dtc *Client) SNSGetSNSToken(openID string, persistentCode string) (SNSGetSNSTokenResponse, error) {
 	var data SNSGetSNSTokenResponse
 	requestData := map[string]string{
 		"openid":          openID,
@@ -49,7 +49,7 @@ func (dtc *DingTalkClient) SNSGetSNSToken(openID string, persistentCode string) 
 	return data, err
 }
 
-func (dtc *DingTalkClient) SNSGetUserInfo(snsToken string) (SNSGetUserInfoResponse, error) {
+func (dtc *Client) SNSGetUserInfo(snsToken string) (SNSGetUserInfoResponse, error) {
 	var data SNSGetUserInfoResponse
 	params := url.Values{}
 	params.Add("sns_token", snsToken)

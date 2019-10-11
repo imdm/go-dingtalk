@@ -22,14 +22,14 @@ type DataUpdateResponse struct {
 }
 
 // 记录统计数据
-func (dtc *DingTalkClient) DataRecord(info *DataRequest) (DataRecordResponse, error) {
+func (dtc *Client) DataRecord(info *DataRequest) (DataRecordResponse, error) {
 	var data DataRecordResponse
 	err := dtc.httpRPC("data/record", nil, info, &data)
 	return data, err
 }
 
 // 更新统计数据
-func (dtc *DingTalkClient) DataUpdate(info *DataRequest) (DataUpdateResponse, error) {
+func (dtc *Client) DataUpdate(info *DataRequest) (DataUpdateResponse, error) {
 	var data DataUpdateResponse
 	err := dtc.httpRPC("data/update", nil, info, &data)
 	return data, err

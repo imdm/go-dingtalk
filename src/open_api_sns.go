@@ -56,3 +56,11 @@ func (dtc *Client) SNSGetUserInfo(snsToken string) (SNSGetUserInfoResponse, erro
 	err := dtc.httpSNS("sns/getuserinfo", params, nil, &data)
 	return data, err
 }
+
+func (dtc *Client) SNSGetUserInfoByCode(code string) (SNSGetUserInfoResponse, error) {
+	var data SNSGetUserInfoResponse
+	params := url.Values{}
+	params.Add("tmp_auth_code", code)
+	err := dtc.httpSNS("sns/getuserinfo_bycode", params, nil, &data)
+	return data, err
+}

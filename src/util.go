@@ -4,11 +4,11 @@ import (
 	"crypto/hmac"
 	"crypto/sha1"
 	"crypto/sha256"
+	"encoding/base64"
 	"encoding/json"
 	"encoding/xml"
 	"errors"
 	"fmt"
-	"io"
 	"io/ioutil"
 	"time"
 )
@@ -77,10 +77,24 @@ func sha1Sign(s string) string {
 	return fmt.Sprintf("%x", bs)
 }
 
-func hamcSha256Sign(s, key string) string {
-	h := hmac.New(sha256.New, []byte(key))
-	io.WriteString(h, s)
-	return fmt.Sprintf("%x", h.Sum(nil))
+func hmacSha256Sign(s, key string) string {
+	m := hmac.New(sha256.New, []byte(key))
+	m.Write([]byte(s))
+	return base64.StdEncoding.EncodeToString(m.Sum(nil))
+}
+
+// base编码
+func base64EncodeStr(src string) string {
+	return string(base64.StdEncoding.EncodeToString([]byte(src)))
+}
+
+// base解码
+func base64DecodeStr(src string) string {
+	a, err := base64.StdEncoding.DecodeString(src)
+	if err != nil {
+		return ""
+	}
+	return string(a)
 }
 
 func HandJSONTopResponse(responseData interface{}, content []byte) {

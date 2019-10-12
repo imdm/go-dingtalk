@@ -83,7 +83,7 @@ func (dtc *Client) CspaceAdd(info *CspaceAddRequest) (CspaceAddResponse, error) 
 	params.Add("folder_id", info.FolderID)
 	params.Add("name", info.Name)
 	if info.Overwrite {
-		params.Add("overwrite", fmt.Sprintf("%s", info.Overwrite))
+		params.Add("overwrite", fmt.Sprintf("%v", info.Overwrite))
 	}
 	err := dtc.httpRPC("cspace/add", params, nil, &data)
 	return data, err

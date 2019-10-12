@@ -115,7 +115,7 @@ func (dtc *Client) MicroAppUpdate(info *MicroAppUpdateRequest) (MicroAppUpdateRe
 func (dtc *Client) MicroAppDelete(agentId int) (MicroAppDeleteResponse, error) {
 	var data MicroAppDeleteResponse
 	params := url.Values{}
-	params.Add("agentId", fmt.Sprintf("%s", agentId))
+	params.Add("agentId", fmt.Sprintf("%d", agentId))
 	err := dtc.httpRPC("microapp/delete", params, nil, &data)
 	return data, err
 }
@@ -140,7 +140,7 @@ func (dtc *Client) MicroAppListByUserId(userId string) (MicroAppListByUserIdResp
 func (dtc *Client) MicroAppVisibleScopes(agentId int) (MicroAppVisibleScopesResponse, error) {
 	var data MicroAppVisibleScopesResponse
 	params := url.Values{}
-	params.Add("agentId", fmt.Sprintf("%s", agentId))
+	params.Add("agentId", fmt.Sprintf("%d", agentId))
 	err := dtc.httpRPC("microapp/visible_scopes", params, nil, &data)
 	return data, err
 }

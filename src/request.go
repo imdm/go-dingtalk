@@ -212,7 +212,9 @@ func (dtc *Client) httpRequest(tagType string, path interface{}, params url.Valu
 				request, _ = http.NewRequest("POST", requestUrl, &b)
 				request.Header.Set("Content-Type", w.FormDataContentType())
 			default:
+				fmt.Println(requestData)
 				d, _ := json.Marshal(requestData)
+				fmt.Println(string(d))
 				request, _ = http.NewRequest("POST", requestUrl, bytes.NewReader(d))
 				request.Header.Set("Content-Type", typeJSON+"; charset=UTF-8")
 			}

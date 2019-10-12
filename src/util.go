@@ -85,7 +85,7 @@ func hmacSha256Sign(s, key string) string {
 
 // base编码
 func base64EncodeStr(src string) string {
-	return string(base64.StdEncoding.EncodeToString([]byte(src)))
+	return base64.StdEncoding.EncodeToString([]byte(src))
 }
 
 // base解码

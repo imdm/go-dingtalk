@@ -67,8 +67,8 @@ func (dtc *Client) SNSGetUserInfoByCode(code string) (SNSGetUserInfoResponse, er
 	params.Add("timestamp", timestamp)
 	signature := hmacSha256Sign(timestamp, dtc.DTConfig.SNSSecret)
 	params.Add("signature", signature)
-	rd := url.Values{}
-	rd.Add("tmp_auth_code", code)
+	rd := make(map[string]string)
+	rd["tmp_auth_code"] = code
 	err := dtc.httpSNS("sns/getuserinfo_bycode", params, rd, &data)
 	return data, err
 }

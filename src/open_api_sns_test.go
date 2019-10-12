@@ -13,7 +13,7 @@ func TestClient_SNSGetUserInfoByCode(t *testing.T) {
 		SNSSecret: "RmD9nRRv83HyxOr-_rRBKIAUeAhB9XGawBfbMx8UUcTn1m-Oyx1V0MO2O-tRV1fH",
 	}
 	c := NewDTClient(config)
-	tmpCode := "bc5496371d793a09b7791098f8218b05"
+	tmpCode := "25f78efa33643f05acec7508d1d09522"
 	info, err := c.SNSGetUserInfoByCode(tmpCode)
 	if err != nil {
 		fmt.Println(err)

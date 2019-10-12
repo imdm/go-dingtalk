@@ -61,6 +61,6 @@ func (dtc *Client) SNSGetUserInfoByCode(code string) (SNSGetUserInfoResponse, er
 	var data SNSGetUserInfoResponse
 	params := url.Values{}
 	params.Add("tmp_auth_code", code)
-	err := dtc.httpSNS("sns/getuserinfo_bycode", params, nil, &data)
+	err := dtc.httpSNS("sns/getuserinfo_bycode", nil, params, &data)
 	return data, err
 }

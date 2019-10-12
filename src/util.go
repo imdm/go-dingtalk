@@ -1,11 +1,14 @@
 package dingtalk
 
 import (
+	"crypto/hmac"
 	"crypto/sha1"
+	"crypto/sha256"
 	"encoding/json"
 	"encoding/xml"
 	"errors"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"time"
 )
@@ -72,6 +75,12 @@ func sha1Sign(s string) string {
 	// in git commits. Use the `%x` format verb to convert
 	// a hash results to a hex string.
 	return fmt.Sprintf("%x", bs)
+}
+
+func hamcSha256Sign(s, key string) string {
+	h := hmac.New(sha256.New, []byte(key))
+	io.WriteString(h, s)
+	return fmt.Sprintf("%x", h.Sum(nil))
 }
 
 func HandJSONTopResponse(responseData interface{}, content []byte) {

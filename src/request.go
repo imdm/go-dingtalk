@@ -212,9 +212,7 @@ func (dtc *Client) httpRequest(tagType string, path interface{}, params url.Valu
 				request, _ = http.NewRequest("POST", requestUrl, &b)
 				request.Header.Set("Content-Type", w.FormDataContentType())
 			default:
-				fmt.Println(requestData)
 				d, _ := json.Marshal(requestData)
-				fmt.Println(string(d))
 				request, _ = http.NewRequest("POST", requestUrl, bytes.NewReader(d))
 				request.Header.Set("Content-Type", typeJSON+"; charset=UTF-8")
 			}
@@ -241,6 +239,7 @@ func (dtc *Client) httpRequest(tagType string, path interface{}, params url.Valu
 	if tagType == "oapi" {
 		if len(contentType) >= pos && contentType[0:pos] == typeJSON {
 			if content, err := ioutil.ReadAll(resp.Body); err == nil {
+				fmt.Println(string(content))
 				json.Unmarshal(content, responseData)
 				switch responseData.(type) {
 				case Unmarshallable:

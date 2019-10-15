@@ -7,7 +7,7 @@ import (
 
 type SubDepartmentListResponse struct {
 	OpenAPIResponse
-	SubDeptIdList []int
+	SubDeptIdList []int `json:"sub_dept_id_list"`
 }
 
 type DepartmentListResponse struct {
@@ -27,19 +27,20 @@ type DepartmentDetailResponse struct {
 	OpenAPIResponse
 	Id                    int
 	Name                  string
-	Order                 int
 	ParentId              int
+	Order                 int
 	CreateDeptGroup       bool
 	AutoAddUser           bool
 	DeptHiding            bool
-	DeptPerimits          string
-	UserPerimits          string
+	DeptPermits           string
+	UserPermits           string
 	OuterDept             bool
 	OuterPermitDepts      string
 	OuterPermitUsers      string
 	OrgDeptOwner          string
 	DeptManagerUserIdList string
 	SourceIdentifier      string
+	GroupContainSubDept   bool
 }
 
 type DepartmentCreateResponse struct {
@@ -99,52 +100,36 @@ type DepartmentListParentDeptsResponse struct {
 	ParentIds interface{} `json:"dep"`
 }
 
-// 获取子部门Id列表
-func (dtc *Client) SubDepartmentList(id interface{}) (SubDepartmentListResponse, error) {
-	var data SubDepartmentListResponse
+// 获取部门id列表
+func (dtc *Client) DepartmentList(id string) (*DepartmentListResponse, error) {
+	data := &DepartmentListResponse{}
 	params := url.Values{}
-	if id != nil {
-		if v, ok := id.(string); ok {
-			params.Add("id", v)
-		}
+	if id != "" {
+		params.Add("id", id)
 	}
-	err := dtc.httpRPC("department/list_ids", params, nil, &data)
+	err := dtc.httpRPC("department/list", params, nil, data)
 	return data, err
 }
 
-// 获取部门id列表
-func (dtc *Client) DepartmentList(id interface{}, lang interface{}) (DepartmentListResponse, error) {
-	var data DepartmentListResponse
+// 获取子部门Id列表
+func (dtc *Client) SubDepartmentList(id string) (*SubDepartmentListResponse, error) {
+	data := &SubDepartmentListResponse{}
 	params := url.Values{}
-	if id != nil {
-		if v, ok := id.(string); ok {
-			params.Add("id", v)
-		}
+	if id != "" {
+		params.Add("id", id)
 	}
-	if lang != nil {
-		if v, ok := lang.(string); ok {
-			params.Add("lang", v)
-		}
-	}
-	err := dtc.httpRPC("department/list", params, nil, &data)
+	err := dtc.httpRPC("department/list_ids", params, nil, data)
 	return data, err
 }
 
 // 获取部门详情
-func (dtc *Client) DepartmentDetail(id interface{}, lang interface{}) (DepartmentDetailResponse, error) {
-	var data DepartmentDetailResponse
+func (dtc *Client) DepartmentDetail(id string) (*DepartmentDetailResponse, error) {
+	data := &DepartmentDetailResponse{}
 	params := url.Values{}
-	if id != nil {
-		if v, ok := id.(string); ok {
-			params.Add("id", v)
-		}
+	if id != "" {
+		params.Add("id", id)
 	}
-	if lang != nil {
-		if v, ok := lang.(string); ok {
-			params.Add("lang", v)
-		}
-	}
-	err := dtc.httpRPC("department/get", params, nil, &data)
+	err := dtc.httpRPC("department/get", params, nil, data)
 	return data, err
 }
 

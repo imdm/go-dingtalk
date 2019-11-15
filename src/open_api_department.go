@@ -12,7 +12,7 @@ type SubDepartmentListResponse struct {
 
 type DepartmentListResponse struct {
 	OpenAPIResponse
-	Department []Department
+	Department []*Department
 }
 
 type Department struct {

@@ -61,7 +61,7 @@ type UserIDListResponse struct {
 type UserSimpleListResponse struct {
 	OpenAPIResponse
 	HasMore  bool
-	UserList []USimpleList
+	UserList []*USimpleList
 }
 
 type USimpleList struct {
@@ -72,7 +72,7 @@ type USimpleList struct {
 type UserListResponse struct {
 	OpenAPIResponse
 	HasMore  bool
-	UserList []UDetailedList
+	UserList []*UDetailedList
 }
 
 type UDetailedList struct {
@@ -102,7 +102,7 @@ type UDetailedList struct {
 
 type UserAdminListResponse struct {
 	OpenAPIResponse
-	AdminList []Admins
+	AdminList []*Admins
 }
 
 type Admins struct {

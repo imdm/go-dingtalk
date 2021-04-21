@@ -20,7 +20,7 @@ import (
 )
 
 func (dtc *Client) httpRPC(path string, params url.Values, requestData interface{}, responseData Unmarshallable, isvGetCInfo ...interface{}) error {
-	if dtc.DevType == "company" {
+	if dtc.DevType == "company" || dtc.DevType == "stw_company" {
 		if dtc.AccessToken != "" {
 			if params == nil {
 				params = url.Values{}
@@ -58,7 +58,7 @@ func (dtc *Client) httpRPC(path string, params url.Values, requestData interface
 			panic(errors.New("ERROR: *DTIsvGetCompanyInfo Error"))
 		}
 	}
-	if dtc.DevType == "personalMini"{
+	if dtc.DevType == "personalMini" {
 		if dtc.SNSAccessToken != "" && path != "sns/getuserinfo" {
 			if params == nil {
 				params = url.Values{}
